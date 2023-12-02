@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="return submitForm(event)">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" onchange="onAgeChange()" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của form (tải lại trang)
+
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var age = document.getElementById('age').value;
+
+            if (firstName.trim() === '' || lastName.trim() === '' || age === '') {
+                alert('All fields must be filled out');
+                return false;
+            }
+
+            if (!/^\d+$/.test(age)) {
+                alert('Age must be a number');
+                return false;
+            }
+
+            console.log(firstName);
+            console.log(lastName);
+            console.log(age);
+            
+            // Gửi dữ liệu form đến server (bạn cần cung cấp URL và xử lý dữ liệu ở phía server)
+            // fetch('your-server-url', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         firstName: firstName,
+            //         lastName: lastName,
+            //         age: age,
+            //     }),
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     console.log('Success:', data);
+            // })
+            // .catch((error) => {
+            //     console.error('Error:', error);
+            // });
+
+            return true;
+        }
+
+        function onAgeChange() {
+            var age = document.getElementById('age').value;
+
+            if (age < 0) {
+                document.getElementById('age').value = 1;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

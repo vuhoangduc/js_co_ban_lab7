@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Box Example</title>
+    <style>
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: left 0.5s ease-in-out;
+            margin-top: 50px;
+        }
+
+        #moveButtonRight, #moveButtonLeft {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="moveButtonRight" onclick="moveBoxRight()">Move Right</button>
+        <button id="moveButtonLeft" onclick="moveBoxLeft()">Move Left</button>
+    </div>
+    <div id="colorBox"></div>
+
+    <script>
+        function moveBoxRight() {
+            var colorBox = document.getElementById("colorBox");
+            var currentLeft = parseInt(colorBox.style.left, 10) || 0;
+            var newLeft = currentLeft + 50; // Di chuyển sang bên phải 50px
+
+            colorBox.style.left = newLeft + "px";
+        }
+
+        function moveBoxLeft() {
+            var colorBox = document.getElementById("colorBox");
+            var currentLeft = parseInt(colorBox.style.left, 10) || 0;
+            var newLeft = currentLeft - 50; // Di chuyển sang bên trái 50px
+
+            colorBox.style.left = newLeft + "px";
+        }
+    </script>
+
+</body>
+</html>
